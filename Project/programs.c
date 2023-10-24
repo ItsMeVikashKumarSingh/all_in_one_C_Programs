@@ -3,6 +3,7 @@
 
 void home();
 int find_length_of(char *s); //returns length of a string
+void palindrome(); //asks for a string and says if it is palindrome or not
 
 int main(){
 	home();
@@ -23,6 +24,7 @@ void home(){
 	switch(n){
 		case 1:
 			//call palindrome function
+			palindrome();
 			break;
 	}
 }
@@ -33,4 +35,20 @@ int find_length_of(char *s){
 		len++;
 	}
 	return len;
+}
+
+void palindrome(){
+	char *text;
+	printf("Enter a string: ");
+	scanf("%s", text);
+	int i, j, len = find_length_of(text);
+	j = len - 1;
+	for(i = 0; i <= j; i++){
+		if(text[i] != text[j]){
+			printf("Not palindrome!\n");
+			return;
+		}
+		j--;
+	}
+	printf("Palindrome!\n");
 }
