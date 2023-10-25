@@ -9,6 +9,7 @@ void home();
 int find_length_of(char *s); //returns length of a string
 void palindrome(); //asks for a string and says if it is palindrome or not
 void guess_number(); //guess a two digit number
+void spr(); //scissor paper rock game, computer vs user
 
 int main(){
 	home();
@@ -24,6 +25,7 @@ void home(){
 	//Options are still incomplete
 	printf("1. Palindrome Checker\n");
 	printf("2. Guess the number\n");
+	printf("3. Scissor Paper Rock\n");
 	printf("----------------------------------\n");
 	printf("Choose one: ");
 	scanf("%d", &n);
@@ -34,8 +36,12 @@ void home(){
 			palindrome();
 			break;
 		case 2:
-			//call palindrome function
+			//call guess_number function
 			guess_number();
+			break;
+		case 3:
+			//call spr function
+			spr();
 			break;
 		default:
 			printf("Invalid choice\n");
@@ -107,4 +113,32 @@ void guess_number(){
 			printf("--\n");
 		}
 	}while(n!=random_number);
+}
+
+void spr(){
+	//s=1, r=2, p=3
+	int play = 1;
+	int p1=0, p2=0;
+	while(play == 1){
+		p1 = (rand() % 3) + 1;
+		do{
+			printf("1.Scissor  2.Rock  3.Paper  Choose one: ");
+			scanf("%d", &p2);
+		}while(p2 < 0 || p2 > 3);
+		
+		if(p1 == p2){
+			if(p1 == 1) printf("Scissor vs Scissor\n");
+			if(p1 == 2) printf("Rock vs Rock\n");
+			if(p1 == 3) printf("Paper vs Paper\n");
+			printf("Draw\n");
+		}
+		else if(p1 = 1 && p2 == 2) printf("Scissor < Rock \nYou win!\n"); //rock p2 wins
+		else if(p1 = 2 && p2 == 1) printf("Rock > Scissor \nComputer wins!\n"); //rock p1 wins 
+		else if(p1 = 2 && p2 == 3) printf("Rock < Paper \nYou win!\n"); //paper p2 wins
+		else if(p1 = 3 && p2 == 2) printf("Paper > Rock \nComputer wins!\n"); //paper p1 wins
+		else if(p1 = 3 && p2 == 1) printf("Paper < Scissor \nYou win!\n"); //scissor p2 wins
+		else if(p1 = 1 && p2 == 3) printf("Scissor > Paper \nComputer wins!\n"); //scissor p1 wins
+		printf("Play again (1/0)? ");
+		scanf("%d", &play);
+	}
 }
